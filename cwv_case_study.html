@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamie Birss — CWV Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --bg: #0c0c0c;
+    --bg2: #141414;
+    --bg3: #1c1c1c;
+    --text: #f0f0ee;
+    --muted: #888884;
+    --hint: #444442;
+    --border: rgba(255,255,255,0.08);
+    --border-strong: rgba(255,255,255,0.15);
+    --accent: #00e878;
+    --accent-dark: #00e878;
+    --accent-dim: rgba(0,232,120,0.08);
+    --warn: #f5a623;
+    --warn-dim: rgba(245,166,35,0.1);
+    --green: #00e878;
+    --green-dim: rgba(0,232,120,0.08);
+    --radius-md: 6px;
+    --radius-lg: 10px;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: #060606;
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .deck-wrapper {
+    width: 100%;
+    max-width: 860px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0,232,120,0.03), 0 32px 80px rgba(0,0,0,0.8);
+  }
+
+  .slide {
+    display: none;
+    min-height: 500px;
+    padding: 3.5rem 4rem;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    background: var(--bg);
+  }
+  .slide.active { display: flex; }
+
+  .slide-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+  .slide-label::before { content: "// "; opacity: 0.4; }
+
+  .slide-num {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 4rem;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--hint);
+  }
+
+  h1 { font-family: var(--sans); font-size: 50px; font-weight: 300; line-height: 1.1; margin-bottom: 0.75rem; letter-spacing: -0.025em; }
+  h2 { font-family: var(--sans); font-size: 34px; font-weight: 300; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.02em; }
+
+  .accent-line { color: var(--accent); }
+  .divider { width: 32px; height: 1px; background: var(--accent); margin: 1.25rem 0; opacity: 0.5; }
+
+  .subtitle { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 540px; font-weight: 300; }
+  .body { font-size: 13px; color: var(--muted); line-height: 1.8; max-width: 600px; font-weight: 300; }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    border: 1px solid;
+  }
+  .tag-green { background: var(--green-dim); color: var(--green); border-color: rgba(0,232,120,0.2); }
+  .tag-blue { background: var(--accent-dim); color: var(--accent); border-color: rgba(0,232,120,0.2); }
+
+  .meta-row { display: flex; gap: 0.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; margin-top: 1.5rem; }
+
+  .card {
+    background: var(--bg2);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    padding: 1rem 1.25rem;
+  }
+  .card + .card { margin-top: 0.75rem; }
+  div[style*="grid-template-columns"] > .card + .card { margin-top: 0; }
+  div[style*="grid-template-columns"] > .card { align-self: stretch; }
+  .card-label { font-family: var(--mono); font-size: 10px; color: var(--hint); margin-bottom: 0.4rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .card-title { font-size: 13px; font-weight: 500; margin-bottom: 0.3rem; color: var(--text); }
+  .card-body { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  .pivot-card { border-left: 2px solid var(--accent); padding-left: 1.25rem; margin: 0.85rem 0; }
+  .pivot-card.warn { border-left-color: var(--warn); }
+  .pivot-label { font-size: 10px; font-family: var(--mono); margin-bottom: 0.4rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .pivot-label.before { color: var(--warn); }
+  .pivot-label.after { color: var(--accent); }
+  .pivot-text { font-size: 14px; font-weight: 400; color: var(--text); }
+
+  .google-quote {
+    background: var(--bg2);
+    border-left: 2px solid var(--border-strong);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 0.875rem 1.25rem;
+    margin: 1rem 0;
+  }
+  .google-quote-text {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+    opacity: 0.85;
+  }
+  .google-quote-source { font-family: var(--mono); font-size: 10px; color: var(--hint); }
+
+  .quote {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--accent);
+    max-width: 600px;
+    margin: 1.5rem 0;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--accent);
+    opacity: 0.85;
+  }
+
+  .stat-row { display: flex; gap: 1.25rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .stat { background: var(--bg2); border-radius: var(--radius-md); padding: 1rem 1.4rem; min-width: 150px; border: 1px solid var(--border); }
+  .stat-value { font-family: var(--mono); font-size: 30px; color: var(--accent); line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+  .persona-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.25rem; }
+
+  .timeline { margin-top: 1.25rem; }
+  .tl-item { display: flex; gap: 1rem; margin-bottom: 1.1rem; align-items: flex-start; }
+  .tl-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); margin-top: 5px; flex-shrink: 0; box-shadow: 0 0 5px var(--accent); }
+  .tl-title { font-size: 13px; font-weight: 500; margin-bottom: 3px; color: var(--text); }
+  .tl-body { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  .asset-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.75rem; }
+  .asset-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 0.75rem 1rem;
+    background: var(--bg2);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    transition: border-color 0.15s;
+    text-decoration: none; color: inherit;
+  }
+  .asset-item:hover, a.asset-item:hover { border-color: var(--accent); }
+  .asset-icon {
+    font-family: var(--mono); font-size: 9px; color: var(--accent);
+    background: var(--accent-dim); border: 1px solid rgba(0,232,120,0.2);
+    border-radius: 3px; padding: 2px 5px; white-space: nowrap; margin-top: 2px; flex-shrink: 0;
+  }
+  .asset-title { font-size: 12px; font-weight: 500; margin-bottom: 2px; color: var(--text); }
+  .asset-body { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  .evolved-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.25rem; }
+
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.875rem 4rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .nav-btn {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    background: transparent; border: 1px solid var(--border);
+    padding: 5px 14px; border-radius: var(--radius-md); cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .nav-btn:disabled { opacity: 0.2; cursor: default; }
+  .nav-btn:disabled:hover { border-color: var(--border); color: var(--muted); }
+
+  .nav-dots { display: flex; gap: 8px; align-items: center; }
+  .nav-dot {
+    width: 5px; height: 5px; border-radius: 50%; background: var(--hint);
+    cursor: pointer; transition: background 0.2s, box-shadow 0.2s; position: relative;
+  }
+  .nav-dot.active { background: var(--accent); box-shadow: 0 0 8px rgba(0,232,120,0.6); }
+  .nav-dot:hover { background: var(--accent); }
+  .nav-dot::after {
+    content: attr(data-label); position: absolute; bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg3); border: 1px solid var(--border-strong);
+    color: var(--text); font-family: var(--mono); font-size: 10px;
+    white-space: nowrap; padding: 4px 8px; border-radius: 4px;
+    opacity: 0; pointer-events: none; transition: opacity 0.15s;
+  }
+  .nav-dot:hover::after { opacity: 1; }
+
+  .progress { height: 1px; background: var(--border); position: relative; }
+  .progress-fill { height: 100%; background: var(--accent); transition: width 0.3s ease; box-shadow: 0 0 12px rgba(0,232,120,0.4); }
+</style>
+</head>
+<body>
+
+<div class="deck-wrapper">
+
+  <div class="progress"><div class="progress-fill" id="progress" style="width: 9.09%"></div></div>
+
+  <!-- 01 Intro -->
+  <div class="slide active" id="slide-1">
+    <div class="slide-label">Introduction</div>
+    <h1>Jamie<br><span class="accent-line">Birss</span></h1>
+    <div class="divider"></div>
+    <p class="subtitle">Product Marketing Manager — 6+ years in B2B SaaS.<br>Raygun · Budibase · Ably</p>
+    <div class="meta-row">
+      <span class="tag tag-green">Developer tools</span>
+      <span class="tag tag-green">Messaging & positioning</span>
+      <span class="tag tag-green">Technical audiences</span>
+      <span class="tag tag-blue">Zero-to-one launches</span>
+    </div>
+    <div class="slide-num">01 / 12</div>
+  </div>
+
+  <!-- 02 Scene setting -->
+  <div class="slide" id="slide-2">
+    <div class="slide-label">Context</div>
+    <h2>Google introduces<br>Core Web Vitals</h2>
+    <div class="divider"></div>
+    <div class="two-col">
+      <div>
+        <p class="body">Google announced Core Web Vitals — a standardised set of metrics for measuring real-world user experience: Largest Contentful Paint, First Input Delay, Cumulative Layout Shift.</p>
+        <br>
+        <p class="body">For Raygun — an error and performance monitoring platform built for engineering teams — CWV was a natural fit for our Real User Monitoring product. The question wasn't whether to build it. It was how to position it.</p>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center;">
+        <svg viewBox="0 0 300 280" width="300" height="280" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Instrument Sans', sans-serif;">
+          <defs>
+            <clipPath id="bar1"><rect x="0" y="67" width="280" height="16" rx="8"/></clipPath>
+            <clipPath id="bar2"><rect x="0" y="151" width="280" height="16" rx="8"/></clipPath>
+            <clipPath id="bar3"><rect x="0" y="235" width="280" height="16" rx="8"/></clipPath>
+          </defs>
+
+          <!-- Legend -->
+          <rect x="0" y="4" width="12" height="12" rx="3" fill="#00e878"/>
+          <text x="17" y="15" fill="#666662" font-size="11">Good</text>
+          <rect x="68" y="4" width="12" height="12" rx="3" fill="#e67e22"/>
+          <text x="85" y="15" fill="#666662" font-size="11">Needs improvement</text>
+          <rect x="224" y="4" width="12" height="12" rx="3" fill="#c0392b"/>
+          <text x="241" y="15" fill="#666662" font-size="11">Poor</text>
+
+          <!-- LCP -->
+          <text x="0" y="44" fill="#f0f0ee" font-size="13" font-weight="500">LCP</text>
+          <text x="0" y="59" fill="#666662" font-size="10">Largest Contentful Paint</text>
+          <g clip-path="url(#bar1)">
+            <rect x="0"   y="67" width="93"  height="16" fill="#00e878"/>
+            <rect x="93"  y="67" width="94"  height="16" fill="#e67e22"/>
+            <rect x="187" y="67" width="93"  height="16" fill="#c0392b"/>
+          </g>
+          <line x1="93"  y1="83" x2="93"  y2="91" stroke="#5f5e5a" stroke-width="1"/>
+          <line x1="187" y1="83" x2="187" y2="91" stroke="#5f5e5a" stroke-width="1"/>
+          <text x="0"   y="103" fill="#666662" font-size="10">0s</text>
+          <text x="93"  y="103" fill="#666662" font-size="10" text-anchor="middle">2.5s</text>
+          <text x="187" y="103" fill="#666662" font-size="10" text-anchor="middle">4s</text>
+          <text x="284" y="103" fill="#666662" font-size="10">→</text>
+
+          <!-- FID -->
+          <text x="0" y="128" fill="#f0f0ee" font-size="13" font-weight="500">FID</text>
+          <text x="0" y="143" fill="#666662" font-size="10">First Input Delay</text>
+          <g clip-path="url(#bar2)">
+            <rect x="0"   y="151" width="93"  height="16" fill="#00e878"/>
+            <rect x="93"  y="151" width="94"  height="16" fill="#e67e22"/>
+            <rect x="187" y="151" width="93"  height="16" fill="#c0392b"/>
+          </g>
+          <line x1="93"  y1="167" x2="93"  y2="175" stroke="#5f5e5a" stroke-width="1"/>
+          <line x1="187" y1="167" x2="187" y2="175" stroke="#5f5e5a" stroke-width="1"/>
+          <text x="0"   y="187" fill="#666662" font-size="10">0ms</text>
+          <text x="93"  y="187" fill="#666662" font-size="10" text-anchor="middle">100ms</text>
+          <text x="187" y="187" fill="#666662" font-size="10" text-anchor="middle">300ms</text>
+          <text x="284" y="187" fill="#666662" font-size="10">→</text>
+
+          <!-- CLS -->
+          <text x="0" y="212" fill="#f0f0ee" font-size="13" font-weight="500">CLS</text>
+          <text x="0" y="227" fill="#666662" font-size="10">Cumulative Layout Shift</text>
+          <g clip-path="url(#bar3)">
+            <rect x="0"   y="235" width="93"  height="16" fill="#00e878"/>
+            <rect x="93"  y="235" width="94"  height="16" fill="#e67e22"/>
+            <rect x="187" y="235" width="93"  height="16" fill="#c0392b"/>
+          </g>
+          <line x1="93"  y1="251" x2="93"  y2="259" stroke="#5f5e5a" stroke-width="1"/>
+          <line x1="187" y1="251" x2="187" y2="259" stroke="#5f5e5a" stroke-width="1"/>
+          <text x="0"   y="271" fill="#666662" font-size="10">0</text>
+          <text x="93"  y="271" fill="#666662" font-size="10" text-anchor="middle">0.1</text>
+          <text x="187" y="271" fill="#666662" font-size="10" text-anchor="middle">0.25</text>
+          <text x="284" y="271" fill="#666662" font-size="10">→</text>
+
+        </svg>
+      </div>
+    </div>
+    <div class="slide-num">02 / 12</div>
+  </div>
+
+  <!-- 03 Borrowed frame -->
+  <div class="slide" id="slide-3">
+    <div class="slide-label">The initial hypothesis</div>
+    <h2>The borrowed<br>frame</h2>
+    <div class="divider"></div>
+    <p class="body">Google's announcement framed CWV primarily as a search ranking signal. That narrative spread fast across the industry — developer publications, SEO blogs, marketing teams. Everyone picked up the same frame.</p>
+
+    <div class="google-quote">
+      <div class="google-quote-text">"We will introduce a new signal that combines Core Web Vitals with our existing signals for page experience."</div>
+      <div class="google-quote-source">Google Search Central Blog</div>
+    </div>
+
+    <p class="body">When the company that invented the metrics tells you they affect search rankings, it's easy to lead with that. We did. So did almost everyone else.</p>
+
+    <div class="pivot-card warn" style="margin-top: 1.25rem;">
+      <div class="pivot-label before">Our initial messaging</div>
+      <div class="pivot-text">"Improve your Core Web Vitals to protect your search rankings"</div>
+    </div>
+    <p class="body" style="margin-top: 1rem;">Accurate. But we hadn't asked whether it was right for <em>our</em> audience.</p>
+    <div class="slide-num">03 / 12</div>
+  </div>
+
+  <!-- 04 ICP -->
+  <div class="slide" id="slide-4">
+    <div class="slide-label">Defining the ICP</div>
+    <h2>Who actually<br>buys Raygun?</h2>
+    <div class="divider"></div>
+    <p class="body">Raygun is a multi-product platform giving engineering teams visibility into the health of their software — crash reporting, APM, and Real User Monitoring. CWV was a natural fit specifically for RUM, which focused on frontend performance. But the buying dynamic was more complex than a single persona.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.85rem; margin-top: 1.25rem;">
+      <div class="card">
+        <div class="card-label" style="color: var(--accent);">User</div>
+        <div class="card-title">Frontend developer</div>
+        <div class="card-body">Uses Raygun RUM day-to-day. Cares about real-user data and knowing what to fix. CWV gave them a clear north star — not SEO.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color: var(--accent);">Buyer</div>
+        <div class="card-title">CTO / TDM</div>
+        <div class="card-body">Signs off on the tool. Cares about business outcomes — bounce rate, conversion rate, revenue. SEO got attention initially, but business impact was what actually moved them.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color: var(--accent);">Stakeholder</div>
+        <div class="card-title">Marketing / website owner</div>
+        <div class="card-body">Often owns the website and cares about SEO. This is why the SEO framing was initially tempting — but they don't buy the tool or use it. Optimising for their frame was the mistake.</div>
+      </div>
+    </div>
+    <p class="body" style="margin-top: 1.25rem;">The SEO angle wasn't wrong — it was just aimed at the wrong person in the room.</p>
+    <div class="slide-num">04 / 12</div>
+  </div>
+
+  <!-- 05 Insights to positioning -->
+  <div class="slide" id="slide-5">
+    <div class="slide-label">Insights to positioning</div>
+    <h2>Reading the<br>conversation</h2>
+    <div class="divider"></div>
+    <p class="body">Because CWV came from Google, there was already a rich body of public conversation before we'd written a word. Rather than starting from scratch, we mapped what was being said — and who was saying it.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1.25rem; align-items: start;">
+      <div class="card">
+        <div class="card-label" style="color: var(--accent);">Developers</div>
+        <div class="card-body" style="font-size: 13px; line-height: 1.6;">Focused on implementation, debugging tools, real-user data vs synthetic. Wanted to know what to fix and how. Almost no mention of SEO.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color: var(--accent);">Business stakeholders</div>
+        <div class="card-body" style="font-size: 13px; line-height: 1.6;">Cared about bounce rate, conversion rate, revenue. SEO got initial attention — but business impact stats were what actually resonated.</div>
+      </div>
+      <div style="background: rgba(0,232,120,0.08); border-radius: var(--radius-lg); padding: 1.25rem 1.4rem; border: 1px solid rgba(0,232,120,0.2);">
+        <div style="font-family: var(--mono); font-size: 48px; color: #00e878; line-height: 1;">53%</div>
+        <div style="font-size: 12px; color: #00e878; line-height: 1.5; margin-top: 0.5rem; opacity: 0.8;">of mobile users abandon a page that takes longer than 3 seconds to load</div>
+        <div style="font-family: var(--mono); font-size: 10px; color: #00e878; margin-top: 0.75rem; opacity: 0.5;">Google / SOASTA research</div>
+      </div>
+    </div>
+    <div class="google-quote" style="margin-top: 1rem;">
+      <div class="google-quote-text">"If you want to argue for Core Web Vitals improvements, that's hard to do for SEO. However, you can make a case for it for user experience."</div>
+      <div class="google-quote-source">Patrick Stox, Ahrefs — Technical SEO lead</div>
+    </div>
+    <div class="slide-num">05 / 12</div>
+  </div>
+
+  <!-- 06 Pivot -->
+  <div class="slide" id="slide-6">
+    <div class="slide-label">The pivot</div>
+    <h2>Same metrics.<br>Different frame.</h2>
+    <div class="divider"></div>
+    <p class="body">Internal conversations and early adopter feedback confirmed the mismatch — developers didn't mention search rankings once. They talked about user experience. So we reframed. Here's what that looked like in practice.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 1.25rem; border-radius: var(--radius-lg); overflow: hidden; border: 0.5px solid var(--border);">
+      <div style="padding: 1.5rem; border-right: 0.5px solid var(--border);">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem;">Developer's guide — UX frame</div>
+        <div style="font-family: var(--mono); font-size: 12px; color: var(--text); line-height: 1.7; margin-bottom: 1rem; opacity: 0.9;">"Developers are on the front lines. With more metrics available than ever before, it has become increasingly difficult to know where to focus. Google has stepped in to provide an answer."</div>
+        <div style="font-size: 12px; color: var(--muted); line-height: 1.5; padding-top: 0.75rem; border-top: 0.5px solid var(--border);">Prioritisation problem. Google as the north star. No mention of SEO or business outcomes.</div>
+      </div>
+      <div style="padding: 1.5rem; background: var(--bg2);">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem;">CTO's guide — business frame</div>
+        <div style="font-family: var(--mono); font-size: 12px; color: var(--text); line-height: 1.7; margin-bottom: 1rem; opacity: 0.9;">"If you've already heard about Core Web Vitals, you've probably seen them as just another requirement from Google that can hurt your search engine visibility. That's far from the full picture."</div>
+        <div style="font-size: 12px; color: var(--muted); line-height: 1.5; padding-top: 0.75rem; border-top: 0.5px solid var(--border);">Dismantles the SEO narrative in the first sentence. Reframes CWV as a business opportunity.</div>
+      </div>
+    </div>
+    <div class="quote" style="font-size: 12px; margin-top: 1.25rem; margin-bottom: 0;">"Positioning isn't just about what's true — it's about what's true for the person you're talking to."</div>
+    <div class="slide-num">06 / 12</div>
+  </div>
+
+  <!-- 07 Stakeholders -->
+  <div class="slide" id="slide-7">
+    <div class="slide-label">Stakeholder alignment</div>
+    <h2>Cross-functional<br>ownership</h2>
+    <div class="divider"></div>
+    <div class="two-col" style="align-items: start;">
+      <div class="timeline" style="margin-top: 0;">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-title">Product — co-created throughout</div>
+            <div class="tl-body">Looped in from the start. Collaborated on a YouTube explainer with a product team member and a developer — gave the content technical credibility with the core audience.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-title">Sales — trained and equipped</div>
+            <div class="tl-body">Ran an internal training session on CWV. Produced a one-pager and a new proposal deck slide. As Google updated the spec throughout its first year, kept sales looped in on every change — messaging wasn't a one-time deliverable.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-title">CS — ongoing feedback loop</div>
+            <div class="tl-body">Weekly syncs with the customer success team fed real customer language back into the messaging. What were customers actually saying when they talked about CWV? That informed how we iterated.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family: var(--mono); font-size: 10px; color: var(--hint); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.6rem;">The YouTube explainer</div>
+        <a href="https://www.youtube.com/watch?v=HX43JqwOguk" target="_blank" style="display: block; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); position: relative; text-decoration: none;">
+          <img src="https://img.youtube.com/vi/HX43JqwOguk/mqdefault.jpg" style="width: 100%; display: block;" alt="Core Web Vitals explainer">
+          <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); transition: background 0.2s;">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(0,232,120,0.9); display: flex; align-items: center; justify-content: center;">
+              <div style="width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 16px; border-color: transparent transparent transparent #000; margin-left: 3px;"></div>
+            </div>
+          </div>
+        </a>
+        <p style="font-size: 11px; color: var(--hint); margin-top: 0.5rem; font-family: var(--mono);">Co-produced with the Raygun product team ↗</p>
+      </div>
+    </div>
+    <div class="slide-num">07 / 12</div>
+  </div>
+
+  <!-- 09 Testing -->
+  <div class="slide" id="slide-8">
+    <div class="slide-label">Testing & iteration</div>
+    <h2>How we validated<br>the messaging</h2>
+    <div class="divider"></div>
+    <div class="evolved-grid">
+      <div class="card">
+        <div class="card-label">Primary test channel</div>
+        <div class="card-title">LinkedIn A/B ads</div>
+        <div class="card-body">LinkedIn is my go-to for fast messaging validation. You can run A/B tests tied to specific personas and get signal quickly — without waiting for organic data. We tracked both CTR and conversion to signup, not just clicks.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Slower but richer</div>
+        <div class="card-title">Landing page experiments</div>
+        <div class="card-body">We also ran A/B tests on landing page messaging. Takes longer to reach significance, but gives you conversion data that's closer to the actual business outcome.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Qualitative signal</div>
+        <div class="card-title">Weekly CS syncs</div>
+        <div class="card-body">Regular conversations with the customer success team surfaced what real customers were saying. Quant tells you what's happening. Qual tells you why. Both matter.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">What I trusted most</div>
+        <div class="card-title">Signup conversion rate</div>
+        <div class="card-body">CTR is a useful leading indicator but it's not the goal. We always pulled through to signup rate — did the message attract the right people, not just more people.</div>
+      </div>
+    </div>
+    <div class="slide-num">08 / 12</div>
+  </div>
+
+  <!-- 10 Results -->
+  <div class="slide" id="slide-9">
+    <div class="slide-label">Results & measurement</div>
+    <h2>How we measured<br>success</h2>
+    <div class="divider"></div>
+    <p class="body">The north star was always RUM signups. We tracked whether users had engaged with any CWV content prior to signing up — not trying to attribute every piece, but understanding the campaign's role in the broader journey.</p>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-value">~50%</div>
+        <div class="stat-label">CTR lift after messaging pivot</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">~50</div>
+        <div class="stat-label">Signups from CSS-Tricks post alone</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">↑</div>
+        <div class="stat-label">RUM signups over following months</div>
+      </div>
+    </div>
+    <p class="body" style="margin-top: 1.25rem;">I'm always cautious about over-attributing. Campaigns like this should be measured holistically — trying to pin every signup to a single piece of content is a losing battle, and sends you down the wrong rabbit holes.</p>
+    <div class="slide-num">09 / 12</div>
+  </div>
+
+  <!-- 11 Assets -->
+  <div class="slide" id="slide-10">
+    <div class="slide-label">What we built</div>
+    <h2>The full<br>content programme</h2>
+    <div class="divider"></div>
+    <div class="asset-grid">
+      <a href="https://raygun.com/learn/the-developers-guide-to-core-web-vitals" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
+        <span class="asset-icon">guide ↗</span>
+        <div>
+          <div class="asset-title">Developer's guide to CWV</div>
+          <div class="asset-body">Actionable tactics and a 4-step workflow for developers</div>
+        </div>
+      </a>
+      <a href="https://raygun.com/learn/the-ctos-guide-to-core-web-vitals" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
+        <span class="asset-icon">guide ↗</span>
+        <div>
+          <div class="asset-title">CTO's guide to CWV</div>
+          <div class="asset-body">Strategy, business impact, and team alignment for leaders</div>
+        </div>
+      </a>
+      <a href="https://raygun.com/ebooks/the-ctos-guide-to-core-web-vitals" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
+        <span class="asset-icon">ebook ↗</span>
+        <div>
+          <div class="asset-title">CTO's guide — ebook</div>
+          <div class="asset-body">Downloadable PDF for the leader persona</div>
+        </div>
+      </a>
+      <a href="https://raygun.com/core-web-vitals" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
+        <span class="asset-icon">page ↗</span>
+        <div>
+          <div class="asset-title">Core Web Vitals landing page</div>
+          <div class="asset-body">Product page anchoring the full campaign</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=HX43JqwOguk" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
+        <span class="asset-icon">video ↗</span>
+        <div>
+          <div class="asset-title">YouTube explainer</div>
+          <div class="asset-body">Co-produced with product team and a developer</div>
+        </div>
+      </a>
+      <a href="https://raygun.com/webinar/how-to-monitor-and-improve-core-web-vitals" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
+        <span class="asset-icon">webinar ↗</span>
+        <div>
+          <div class="asset-title">Live webinar</div>
+          <div class="asset-body">How to monitor and improve Core Web Vitals</div>
+        </div>
+      </a>
+      <a href="https://css-tricks.com/how-to-monitor-core-web-vitals-and-take-action-with-raygun/" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
+        <span class="asset-icon">post ↗</span>
+        <div>
+          <div class="asset-title">CSS-Tricks sponsored post</div>
+          <div class="asset-body">With Chris Coyier — ~50 signups from a single placement</div>
+        </div>
+      </a>
+      <div class="asset-item">
+        <span class="asset-icon">sales</span>
+        <div>
+          <div class="asset-title">Sales enablement</div>
+          <div class="asset-body">One-pager, proposal slide, and internal training session</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">10 / 12</div>
+  </div>
+
+  <!-- 12 Evolved -->
+  <div class="slide" id="slide-11">
+    <div class="slide-label">How my approach has evolved</div>
+    <h2>What I'd do<br>differently now</h2>
+    <div class="divider"></div>
+    <div class="evolved-grid">
+      <div class="card">
+        <div class="card-label">Earlier validation</div>
+        <div class="card-title">Talk to customers first</div>
+        <div class="card-body">Run customer conversations before committing to a messaging direction. The UX vs SEO insight was available — we just didn't seek it out early enough.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Faster signal</div>
+        <div class="card-title">Test on LinkedIn from day one</div>
+        <div class="card-body">I'd treat paid channels as a research tool from the start, not a post-launch check. Fast, persona-targeted, and directly tied to signup conversion.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Today's toolkit</div>
+        <div class="card-title">Interactive demo</div>
+        <div class="card-body">I'd now build a live demo app alongside the content — something developers can interact with, not just read about. Immediate proof of value for a technical audience.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">The core lesson</div>
+        <div class="card-title">Don't borrow someone else's frame</div>
+        <div class="card-body">Accurate isn't the same as relevant. Always ask: is this framing right for the person we're talking to, or just the person who invented the thing?</div>
+      </div>
+    </div>
+    <div class="slide-num">11 / 12</div>
+  </div>
+
+  <!-- 12 Thanks -->
+  <div class="slide" id="slide-12">
+    <div class="slide-label">Thanks for listening</div>
+    <h1>Questions<br><span class="accent-line">welcome.</span></h1>
+    <div class="divider"></div>
+    <p class="subtitle">Jamie Birss — Product Marketing Manager</p>
+    <div class="meta-row" style="margin-top: 2rem;">
+      <span class="tag tag-green">Core Web Vitals at Raygun</span>
+    </div>
+    <div class="slide-num">12 / 12</div>
+  </div>
+
+  <!-- Nav -->
+  <div class="nav">
+    <button class="nav-btn" id="prev-btn" onclick="changeSlide(-1)" disabled>← prev</button>
+    <div class="nav-dots" id="dots"></div>
+    <button class="nav-btn" id="next-btn" onclick="changeSlide(1)">next →</button>
+  </div>
+
+</div>
+
+<script>
+  const total = 12;
+  let current = 1;
+  const dotsEl = document.getElementById('dots');
+
+  const labels = [
+    'Introduction',
+    'Context',
+    'The borrowed frame',
+    'Defining the ICP',
+    'Reading the conversation',
+    'The pivot',
+    'Stakeholder alignment',
+    'Testing & iteration',
+    'Results & measurement',
+    'What we built',
+    'How my approach has evolved',
+    'Questions'
+  ];
+
+  for (let i = 1; i <= total; i++) {
+    const d = document.createElement('div');
+    d.className = 'nav-dot' + (i === 1 ? ' active' : '');
+    d.setAttribute('data-label', labels[i - 1]);
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  }
+
+  function goTo(n) {
+    document.getElementById('slide-' + current).classList.remove('active');
+    document.querySelectorAll('.nav-dot')[current - 1].classList.remove('active');
+    current = n;
+    document.getElementById('slide-' + current).classList.add('active');
+    document.querySelectorAll('.nav-dot')[current - 1].classList.add('active');
+    document.getElementById('prev-btn').disabled = current === 1;
+    document.getElementById('next-btn').disabled = current === total;
+    document.getElementById('progress').style.width = (current / total * 100) + '%';
+  }
+
+  function changeSlide(dir) { goTo(Math.max(1, Math.min(total, current + dir))); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' && current < total) goTo(current + 1);
+    if (e.key === 'ArrowLeft' && current > 1) goTo(current - 1);
+  });
+</script>
+
+</body>
+</html>
