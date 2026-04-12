@@ -116,6 +116,7 @@
   }
   .card + .card { margin-top: 0.75rem; }
   div[style*="grid-template-columns"] > .card + .card { margin-top: 0; }
+  .evolved-grid > .card + .card { margin-top: 0; }
   div[style*="grid-template-columns"] > .card { align-self: stretch; }
   .card-label { font-family: var(--mono); font-size: 10px; color: var(--hint); margin-bottom: 0.4rem; letter-spacing: 0.08em; text-transform: uppercase; }
   .card-title { font-size: 13px; font-weight: 500; margin-bottom: 0.3rem; color: var(--text); }
@@ -239,14 +240,14 @@
     <div class="slide-label">Introduction</div>
     <h1>Jamie<br><span class="accent-line">Birss</span></h1>
     <div class="divider"></div>
-    <p class="subtitle">Product Marketing Manager — 6+ years in B2B SaaS.<br>Raygun · Budibase · Ably</p>
+    <p class="subtitle">Product Marketing Manager | 6+ years marketing to developers.<br>Raygun · Budibase · Ably</p>
     <div class="meta-row">
       <span class="tag tag-green">Developer tools</span>
       <span class="tag tag-green">Messaging & positioning</span>
       <span class="tag tag-green">Technical audiences</span>
       <span class="tag tag-blue">Zero-to-one launches</span>
     </div>
-    <div class="slide-num">01 / 12</div>
+    <div class="slide-num">01 / 13</div>
   </div>
 
   <!-- 02 Scene setting -->
@@ -256,9 +257,9 @@
     <div class="divider"></div>
     <div class="two-col">
       <div>
-        <p class="body">Google announced Core Web Vitals — a standardised set of metrics for measuring real-world user experience: Largest Contentful Paint, First Input Delay, Cumulative Layout Shift.</p>
+        <p class="body">Google announced Core Web Vitals, a standardised set of metrics for measuring real-world user experience: Largest Contentful Paint, First Input Delay, Cumulative Layout Shift.</p>
         <br>
-        <p class="body">For Raygun — an error and performance monitoring platform built for engineering teams — CWV was a natural fit for our Real User Monitoring product. The question wasn't whether to build it. It was how to position it.</p>
+        <p class="body">For Raygun, an error and performance monitoring platform built for engineering teams, CWV was a natural fit for our Real User Monitoring product. The question wasn't whether to build it, it was how to position it.</p>
       </div>
       <div style="display: flex; align-items: center; justify-content: center;">
         <svg viewBox="0 0 300 280" width="300" height="280" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Instrument Sans', sans-serif;">
@@ -324,7 +325,7 @@
         </svg>
       </div>
     </div>
-    <div class="slide-num">02 / 12</div>
+    <div class="slide-num">02 / 13</div>
   </div>
 
   <!-- 03 Borrowed frame -->
@@ -332,21 +333,21 @@
     <div class="slide-label">The initial hypothesis</div>
     <h2>The borrowed<br>frame</h2>
     <div class="divider"></div>
-    <p class="body">Google's announcement framed CWV primarily as a search ranking signal. That narrative spread fast across the industry — developer publications, SEO blogs, marketing teams. Everyone picked up the same frame.</p>
+    <p class="body">Google's announcement framed CWV primarily as a search ranking signal, which makes sense given their product. That narrative spread fast across the industry, from direct competitors, developer publications, and more.</p>
 
     <div class="google-quote">
-      <div class="google-quote-text">"We will introduce a new signal that combines Core Web Vitals with our existing signals for page experience."</div>
-      <div class="google-quote-source">Google Search Central Blog</div>
+      <div class="google-quote-text">"We highly recommend site owners achieve good Core Web Vitals for success with Search... This, along with other page experience aspects, aligns with what our core ranking systems seek to reward."</div>
+      <div class="google-quote-source">Google Search Central</div>
     </div>
 
-    <p class="body">When the company that invented the metrics tells you they affect search rankings, it's easy to lead with that. We did. So did almost everyone else.</p>
+    <p class="body">When the company that invented the metrics tells you they affect search rankings, it's easy to lead with that. And we did, along with everyone else.</p>
 
     <div class="pivot-card warn" style="margin-top: 1.25rem;">
       <div class="pivot-label before">Our initial messaging</div>
       <div class="pivot-text">"Improve your Core Web Vitals to protect your search rankings"</div>
     </div>
-    <p class="body" style="margin-top: 1rem;">Accurate. But we hadn't asked whether it was right for <em>our</em> audience.</p>
-    <div class="slide-num">03 / 12</div>
+    <p class="body" style="margin-top: 1rem;">Accurate. But we hadn't asked whether it was right for our audience.</p>
+    <div class="slide-num">03 / 13</div>
   </div>
 
   <!-- 04 ICP -->
@@ -354,26 +355,26 @@
     <div class="slide-label">Defining the ICP</div>
     <h2>Who actually<br>buys Raygun?</h2>
     <div class="divider"></div>
-    <p class="body">Raygun is a multi-product platform giving engineering teams visibility into the health of their software — crash reporting, APM, and Real User Monitoring. CWV was a natural fit specifically for RUM, which focused on frontend performance. But the buying dynamic was more complex than a single persona.</p>
+    <p class="body">Raygun is a multi-product platform giving engineering teams visibility into the health of their software, with three products: crash reporting, APM, and Real User Monitoring. CWV was a natural fit specifically for RUM, which focused on frontend performance. But the buying dynamic was more complex than a single persona.</p>
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.85rem; margin-top: 1.25rem;">
       <div class="card">
         <div class="card-label" style="color: var(--accent);">User</div>
         <div class="card-title">Frontend developer</div>
-        <div class="card-body">Uses Raygun RUM day-to-day. Cares about real-user data and knowing what to fix. CWV gave them a clear north star — not SEO.</div>
+        <div class="card-body">Uses Raygun RUM day-to-day. Drowning in metrics — CWV gave them a clear north star for what to fix and why. And beyond prioritisation, developers take pride in their craft. A fast, seamless experience matters to them personally.</div>
       </div>
       <div class="card">
         <div class="card-label" style="color: var(--accent);">Buyer</div>
         <div class="card-title">CTO / TDM</div>
-        <div class="card-body">Signs off on the tool. Cares about business outcomes — bounce rate, conversion rate, revenue. SEO got attention initially, but business impact was what actually moved them.</div>
+        <div class="card-body">Signs off on the tool. Cares about engineering ROI, dev team efficiency, and metrics they report upward: bounce rate, conversion rate, session length. CWV also gives them a shared language across engineering, product and marketing.</div>
       </div>
       <div class="card">
         <div class="card-label" style="color: var(--accent);">Stakeholder</div>
         <div class="card-title">Marketing / website owner</div>
-        <div class="card-body">Often owns the website and cares about SEO. This is why the SEO framing was initially tempting — but they don't buy the tool or use it. Optimising for their frame was the mistake.</div>
+        <div class="card-body">Often owns the website and cares about SEO. This is why the SEO framing was initially tempting, but they don't buy the tool or use it. Optimising for their frame was the mistake.</div>
       </div>
     </div>
-    <p class="body" style="margin-top: 1.25rem;">The SEO angle wasn't wrong — it was just aimed at the wrong person in the room.</p>
-    <div class="slide-num">04 / 12</div>
+    <p class="body" style="margin-top: 1.25rem;">The SEO angle wasn't wrong, it was just aimed at the wrong person in the room.</p>
+    <div class="slide-num">04 / 13</div>
   </div>
 
   <!-- 05 Insights to positioning -->
@@ -381,7 +382,7 @@
     <div class="slide-label">Insights to positioning</div>
     <h2>Reading the<br>conversation</h2>
     <div class="divider"></div>
-    <p class="body">Because CWV came from Google, there was already a rich body of public conversation before we'd written a word. Rather than starting from scratch, we mapped what was being said — and who was saying it.</p>
+    <p class="body">Because CWV came from Google, there was a rich body of public conversation about these metrics. Rather than starting from scratch, we mapped what was being said, and who was saying it.</p>
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1.25rem; align-items: start;">
       <div class="card">
         <div class="card-label" style="color: var(--accent);">Developers</div>
@@ -389,7 +390,7 @@
       </div>
       <div class="card">
         <div class="card-label" style="color: var(--accent);">Business stakeholders</div>
-        <div class="card-body" style="font-size: 13px; line-height: 1.6;">Cared about bounce rate, conversion rate, revenue. SEO got initial attention — but business impact stats were what actually resonated.</div>
+        <div class="card-body" style="font-size: 13px; line-height: 1.6;">Cared about bounce rate, conversion rate, revenue. SEO got initial attention, but business impact stats were what actually resonated.</div>
       </div>
       <div style="background: rgba(0,232,120,0.08); border-radius: var(--radius-lg); padding: 1.25rem 1.4rem; border: 1px solid rgba(0,232,120,0.2);">
         <div style="font-family: var(--mono); font-size: 48px; color: #00e878; line-height: 1;">53%</div>
@@ -399,9 +400,9 @@
     </div>
     <div class="google-quote" style="margin-top: 1rem;">
       <div class="google-quote-text">"If you want to argue for Core Web Vitals improvements, that's hard to do for SEO. However, you can make a case for it for user experience."</div>
-      <div class="google-quote-source">Patrick Stox, Ahrefs — Technical SEO lead</div>
+      <div class="google-quote-source">Patrick Stox, Ahrefs - Technical SEO lead</div>
     </div>
-    <div class="slide-num">05 / 12</div>
+    <div class="slide-num">05 / 13</div>
   </div>
 
   <!-- 06 Pivot -->
@@ -409,7 +410,7 @@
     <div class="slide-label">The pivot</div>
     <h2>Same metrics.<br>Different frame.</h2>
     <div class="divider"></div>
-    <p class="body">Internal conversations and early adopter feedback confirmed the mismatch — developers didn't mention search rankings once. They talked about user experience. So we reframed. Here's what that looked like in practice.</p>
+    <p class="body">Internal conversations and early adopter feedback confirmed the mismatch. Developers didn't mention search rankings once - they talked about user experience. So we reframed. Here's what that looked like in practice.</p>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 1.25rem; border-radius: var(--radius-lg); overflow: hidden; border: 0.5px solid var(--border);">
       <div style="padding: 1.5rem; border-right: 0.5px solid var(--border);">
         <div style="font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem;">Developer's guide — UX frame</div>
@@ -418,12 +419,12 @@
       </div>
       <div style="padding: 1.5rem; background: var(--bg2);">
         <div style="font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem;">CTO's guide — business frame</div>
-        <div style="font-family: var(--mono); font-size: 12px; color: var(--text); line-height: 1.7; margin-bottom: 1rem; opacity: 0.9;">"If you've already heard about Core Web Vitals, you've probably seen them as just another requirement from Google that can hurt your search engine visibility. That's far from the full picture."</div>
-        <div style="font-size: 12px; color: var(--muted); line-height: 1.5; padding-top: 0.75rem; border-top: 0.5px solid var(--border);">Dismantles the SEO narrative in the first sentence. Reframes CWV as a business opportunity.</div>
+        <div style="font-family: var(--mono); font-size: 12px; color: var(--text); line-height: 1.7; margin-bottom: 1rem; opacity: 0.9;">"The goal isn't to create more development work; it's to motivate everyone to think about performance from the user's point of view."</div>
+        <div style="font-size: 12px; color: var(--muted); line-height: 1.5; padding-top: 0.75rem; border-top: 0.5px solid var(--border);">Speaks directly to dev team efficiency and ROI. Reframes CWV as an alignment tool, not a compliance burden.</div>
       </div>
     </div>
     <div class="quote" style="font-size: 12px; margin-top: 1.25rem; margin-bottom: 0;">"Positioning isn't just about what's true — it's about what's true for the person you're talking to."</div>
-    <div class="slide-num">06 / 12</div>
+    <div class="slide-num">06 / 13</div>
   </div>
 
   <!-- 07 Stakeholders -->
@@ -436,21 +437,21 @@
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div>
-            <div class="tl-title">Product — co-created throughout</div>
-            <div class="tl-body">Looped in from the start. Collaborated on a YouTube explainer with a product team member and a developer — gave the content technical credibility with the core audience.</div>
+            <div class="tl-title">Product: co-created throughout</div>
+            <div class="tl-body">Looped in from the start. Collaborated on a YouTube explainer with a product team member and a developer, giving the content technical credibility with the core audience.</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div>
-            <div class="tl-title">Sales — trained and equipped</div>
-            <div class="tl-body">Ran an internal training session on CWV. Produced a one-pager and a new proposal deck slide. As Google updated the spec throughout its first year, kept sales looped in on every change — messaging wasn't a one-time deliverable.</div>
+            <div class="tl-title">Sales: trained and equipped</div>
+            <div class="tl-body">Ran an internal training session on CWV. Produced a one-pager and a new proposal deck slide. As Google updated the spec throughout its first year, kept sales looped in on every change - messaging wasn't a one-time deliverable.</div>
           </div>
         </div>
         <div class="tl-item">
           <div class="tl-dot"></div>
           <div>
-            <div class="tl-title">CS — ongoing feedback loop</div>
+            <div class="tl-title">CS: ongoing feedback loop</div>
             <div class="tl-body">Weekly syncs with the customer success team fed real customer language back into the messaging. What were customers actually saying when they talked about CWV? That informed how we iterated.</div>
           </div>
         </div>
@@ -458,7 +459,7 @@
       <div>
         <div style="font-family: var(--mono); font-size: 10px; color: var(--hint); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.6rem;">The YouTube explainer</div>
         <a href="https://www.youtube.com/watch?v=HX43JqwOguk" target="_blank" style="display: block; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border); position: relative; text-decoration: none;">
-          <img src="https://img.youtube.com/vi/HX43JqwOguk/mqdefault.jpg" style="width: 100%; display: block;" alt="Core Web Vitals explainer">
+          <img src="webinar_thumb.png" style="width: 100%; display: block;" alt="Core Web Vitals explainer">
           <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); transition: background 0.2s;">
             <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(0,232,120,0.9); display: flex; align-items: center; justify-content: center;">
               <div style="width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 16px; border-color: transparent transparent transparent #000; margin-left: 3px;"></div>
@@ -468,7 +469,7 @@
         <p style="font-size: 11px; color: var(--hint); margin-top: 0.5rem; font-family: var(--mono);">Co-produced with the Raygun product team ↗</p>
       </div>
     </div>
-    <div class="slide-num">07 / 12</div>
+    <div class="slide-num">07 / 13</div>
   </div>
 
   <!-- 09 Testing -->
@@ -480,7 +481,7 @@
       <div class="card">
         <div class="card-label">Primary test channel</div>
         <div class="card-title">LinkedIn A/B ads</div>
-        <div class="card-body">LinkedIn is my go-to for fast messaging validation. You can run A/B tests tied to specific personas and get signal quickly — without waiting for organic data. We tracked both CTR and conversion to signup, not just clicks.</div>
+        <div class="card-body">LinkedIn is my go-to for fast messaging validation. Run A/B tests tied to specific personas, get signal quickly without waiting for organic data. We tracked both CTR and conversion to signup, not just clicks.</div>
       </div>
       <div class="card">
         <div class="card-label">Slower but richer</div>
@@ -495,18 +496,45 @@
       <div class="card">
         <div class="card-label">What I trusted most</div>
         <div class="card-title">Signup conversion rate</div>
-        <div class="card-body">CTR is a useful leading indicator but it's not the goal. We always pulled through to signup rate — did the message attract the right people, not just more people.</div>
+        <div class="card-body">CTR is a useful leading indicator but it's not the goal. We always pulled through to signup rate - did the message attract the right people, not just more people.</div>
       </div>
     </div>
-    <div class="slide-num">08 / 12</div>
+    <div class="slide-num">08 / 13</div>
+  </div>
+
+  <!-- 09 Distribution -->
+  <div class="slide" id="slide-9">
+    <div class="slide-label">Distribution</div>
+    <h2>Spreading<br>the word</h2>
+    <div class="divider"></div>
+    <p class="body">With messaging validated and two clear persona frames locked in, this was the moment to scale. We'd earned the right to go loud. The developer guide and CTO guide became the content backbone — everything else drove people to them or extended the story for a specific channel.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.25rem;">
+      <div class="card">
+        <div class="card-label" style="color: var(--accent);">Owned audience</div>
+        <div class="card-body" style="font-size: 12px; line-height: 1.6;">Performance Matters, Raygun's developer-focused performance newsletter with ~50k subscribers, was a natural home for the launch. Plus the quarterly product newsletter and dedicated launch emails for both guides.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color: var(--accent);">Paid & distribution</div>
+        <div class="card-body" style="font-size: 12px; line-height: 1.6;">LinkedIn PPC targeting both personas with separate creative. Sponsored post with Chris Coyier on CSS-Tricks, putting the message directly in front of developers where they already were.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color: var(--accent);">Product & in-app</div>
+        <div class="card-body" style="font-size: 12px; line-height: 1.6;">Website and in-app banners drove awareness to existing users. Updated the onboarding flow to showcase CWV — so new signups understood the feature's value from day one.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color: var(--accent);">Events & enablement</div>
+        <div class="card-body" style="font-size: 12px; line-height: 1.6;">A live webinar, repurposed on-demand after launch. Internal sales training, one-pager, and a proposal deck slide so the messaging carried through to every sales conversation.</div>
+      </div>
+    </div>
+    <div class="slide-num">09 / 13</div>
   </div>
 
   <!-- 10 Results -->
-  <div class="slide" id="slide-9">
+  <div class="slide" id="slide-10">
     <div class="slide-label">Results & measurement</div>
     <h2>How we measured<br>success</h2>
     <div class="divider"></div>
-    <p class="body">The north star was always RUM signups. We tracked whether users had engaged with any CWV content prior to signing up — not trying to attribute every piece, but understanding the campaign's role in the broader journey.</p>
+    <p class="body">The north star was always RUM signups. We tracked whether users had engaged with any CWV content prior to signing up. Not trying to attribute every piece, but understanding the campaign's role in the broader journey.</p>
     <div class="stat-row">
       <div class="stat">
         <div class="stat-value">~50%</div>
@@ -521,30 +549,36 @@
         <div class="stat-label">RUM signups over following months</div>
       </div>
     </div>
-    <p class="body" style="margin-top: 1.25rem;">I'm always cautious about over-attributing. Campaigns like this should be measured holistically — trying to pin every signup to a single piece of content is a losing battle, and sends you down the wrong rabbit holes.</p>
-    <div class="slide-num">09 / 12</div>
+    <p class="body" style="margin-top: 1.25rem;">I'm always cautious about over-attributing. Campaigns like this should be measured holistically. Trying to pin every signup to a single piece of content is a losing battle, and sends you down the wrong rabbit holes.</p>
+    <div class="slide-num">10 / 13</div>
   </div>
 
   <!-- 11 Assets -->
-  <div class="slide" id="slide-10">
+  <div class="slide" id="slide-11">
     <div class="slide-label">What we built</div>
     <h2>The full<br>content programme</h2>
     <div class="divider"></div>
     <div class="asset-grid">
-      <a href="https://raygun.com/learn/the-developers-guide-to-core-web-vitals" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
-        <span class="asset-icon">guide ↗</span>
-        <div>
-          <div class="asset-title">Developer's guide to CWV</div>
-          <div class="asset-body">Actionable tactics and a 4-step workflow for developers</div>
-        </div>
-      </a>
-      <a href="https://raygun.com/learn/the-ctos-guide-to-core-web-vitals" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
-        <span class="asset-icon">guide ↗</span>
-        <div>
-          <div class="asset-title">CTO's guide to CWV</div>
-          <div class="asset-body">Strategy, business impact, and team alignment for leaders</div>
-        </div>
-      </a>
+      <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+        <a href="https://raygun.com/learn/the-developers-guide-to-core-web-vitals" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
+          <span class="asset-icon">guide ↗</span>
+          <div>
+            <div class="asset-title">Developer's guide to CWV</div>
+            <div class="asset-body">Actionable tactics and a 4-step workflow for developers</div>
+          </div>
+        </a>
+        <a href="https://cdn.prod.website-files.com/5e4bb125419b3343f60a3c85/675a24553b192fb39ef65b59_CWV-whitepaper_updated-2024.pdf" target="_blank" style="font-family: var(--mono); font-size: 10px; color: var(--accent); text-decoration: none; padding: 0 0.25rem;">PDF ↗</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+        <a href="https://raygun.com/learn/the-ctos-guide-to-core-web-vitals" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
+          <span class="asset-icon">guide ↗</span>
+          <div>
+            <div class="asset-title">CTO's guide to CWV</div>
+            <div class="asset-body">Strategy, business impact, and team alignment for leaders</div>
+          </div>
+        </a>
+        <a href="https://cdn.prod.website-files.com/5e4bb125419b3343f60a3c85/62b0fe3d201fd07c4e06bbde_CTOs-CWV-whitepaper_2022--Final.pdf" target="_blank" style="font-family: var(--mono); font-size: 10px; color: var(--accent); text-decoration: none; padding: 0 0.25rem;">PDF ↗</a>
+      </div>
       <a href="https://raygun.com/ebooks/the-ctos-guide-to-core-web-vitals" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
         <span class="asset-icon">ebook ↗</span>
         <div>
@@ -588,11 +622,11 @@
         </div>
       </div>
     </div>
-    <div class="slide-num">10 / 12</div>
+    <div class="slide-num">11 / 13</div>
   </div>
 
   <!-- 12 Evolved -->
-  <div class="slide" id="slide-11">
+  <div class="slide" id="slide-12">
     <div class="slide-label">How my approach has evolved</div>
     <h2>What I'd do<br>differently now</h2>
     <div class="divider"></div>
@@ -618,11 +652,11 @@
         <div class="card-body">Accurate isn't the same as relevant. Always ask: is this framing right for the person we're talking to, or just the person who invented the thing?</div>
       </div>
     </div>
-    <div class="slide-num">11 / 12</div>
+    <div class="slide-num">12 / 13</div>
   </div>
 
   <!-- 12 Thanks -->
-  <div class="slide" id="slide-12">
+  <div class="slide" id="slide-13">
     <div class="slide-label">Thanks for listening</div>
     <h1>Questions<br><span class="accent-line">welcome.</span></h1>
     <div class="divider"></div>
@@ -630,7 +664,7 @@
     <div class="meta-row" style="margin-top: 2rem;">
       <span class="tag tag-green">Core Web Vitals at Raygun</span>
     </div>
-    <div class="slide-num">12 / 12</div>
+    <div class="slide-num">13 / 13</div>
   </div>
 
   <!-- Nav -->
@@ -643,7 +677,7 @@
 </div>
 
 <script>
-  const total = 12;
+  const total = 13;
   let current = 1;
   const dotsEl = document.getElementById('dots');
 
