@@ -383,19 +383,21 @@
     <h2>Reading the<br>conversation</h2>
     <div class="divider"></div>
     <p class="body">Because CWV came from Google, there was a rich body of public conversation about these metrics. Rather than starting from scratch, we mapped what was being said, and who was saying it.</p>
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1.25rem; align-items: start;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.25rem; align-items: stretch;">
       <div class="card">
         <div class="card-label" style="color: var(--accent);">Developers</div>
         <div class="card-body" style="font-size: 13px; line-height: 1.6;">Focused on implementation, debugging tools, real-user data vs synthetic. Wanted to know what to fix and how. Almost no mention of SEO.</div>
       </div>
       <div class="card">
         <div class="card-label" style="color: var(--accent);">Business stakeholders</div>
-        <div class="card-body" style="font-size: 13px; line-height: 1.6;">Cared about bounce rate, conversion rate, revenue. SEO got initial attention, but business impact stats were what actually resonated.</div>
+        <div class="card-body" style="font-size: 13px; line-height: 1.6;">Cared about bounce rate, conversion rate, revenue. SEO stayed in the conversation as a supporting benefit, but leading with it was the wrong move. Business impact was what actually moved them.</div>
       </div>
-      <div style="background: rgba(0,232,120,0.08); border-radius: var(--radius-lg); padding: 1.25rem 1.4rem; border: 1px solid rgba(0,232,120,0.2);">
-        <div style="font-family: var(--mono); font-size: 48px; color: #00e878; line-height: 1;">53%</div>
-        <div style="font-size: 12px; color: #00e878; line-height: 1.5; margin-top: 0.5rem; opacity: 0.8;">of mobile users abandon a page that takes longer than 3 seconds to load</div>
-        <div style="font-family: var(--mono); font-size: 10px; color: #00e878; margin-top: 0.75rem; opacity: 0.5;">Google / SOASTA research</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 1.5rem; background: rgba(0,232,120,0.08); border-radius: var(--radius-md); padding: 1rem 1.4rem; border: 1px solid rgba(0,232,120,0.2); margin-top: 0.75rem;">
+      <div style="font-family: var(--mono); font-size: 42px; color: #00e878; line-height: 1; flex-shrink: 0;">53%</div>
+      <div>
+        <div style="font-size: 13px; color: #00e878; line-height: 1.5;">of mobile users abandon a page that takes longer than 3 seconds to load</div>
+        <div style="font-family: var(--mono); font-size: 10px; color: #00e878; margin-top: 0.4rem; opacity: 0.5;">Google / SOASTA research</div>
       </div>
     </div>
     <div class="google-quote" style="margin-top: 1rem;">
@@ -537,19 +539,20 @@
     <p class="body">The north star was always RUM signups. We tracked whether users had engaged with any CWV content prior to signing up. Not trying to attribute every piece, but understanding the campaign's role in the broader journey.</p>
     <div class="stat-row">
       <div class="stat">
-        <div class="stat-value">~50%</div>
-        <div class="stat-label">CTR lift after messaging pivot</div>
+        <div class="stat-value">~30%</div>
+        <div class="stat-label">CTR lift on LinkedIn ads after messaging pivot</div>
       </div>
       <div class="stat">
         <div class="stat-value">~50</div>
         <div class="stat-label">Signups from CSS-Tricks post alone</div>
       </div>
-      <div class="stat">
-        <div class="stat-value">↑</div>
-        <div class="stat-label">RUM signups over following months</div>
-      </div>
     </div>
     <p class="body" style="margin-top: 1.25rem;">I'm always cautious about over-attributing. Campaigns like this should be measured holistically. Trying to pin every signup to a single piece of content is a losing battle, and sends you down the wrong rabbit holes.</p>
+    <div class="card" style="margin-top: 1rem;">
+      <div class="card-label">What didn't work</div>
+      <div class="card-title">Repurposed webinar clips as LinkedIn ads</div>
+      <div class="card-body">We tried clipping the webinar for paid social. Performance was poor. The format didn't translate - webinar content is built for an engaged audience, not a cold scroll. In hindsight, video ads need to be made bespoke for the channel from the start.</div>
+    </div>
     <div class="slide-num">10 / 13</div>
   </div>
 
@@ -558,6 +561,7 @@
     <div class="slide-label">What we built</div>
     <h2>The full<br>content programme</h2>
     <div class="divider"></div>
+    <p class="body" style="margin-bottom: 1rem;">The persona thinking ran through the content architecture too. The CTO and developer guides were about getting attention and making the case. The actual "how to improve your scores" content was deliberately dev-focused, because that's who needs to do the work.</p>
     <div class="asset-grid">
       <div style="display: flex; flex-direction: column; gap: 0.4rem;">
         <a href="https://raygun.com/learn/the-developers-guide-to-core-web-vitals" target="_blank" class="asset-item" style="text-decoration: none; color: inherit;">
@@ -690,9 +694,10 @@
     'The pivot',
     'Stakeholder alignment',
     'Testing & iteration',
+    'Spreading the word',
     'Results & measurement',
     'What we built',
-    'How my approach has evolved',
+    'What I\'d do differently',
     'Questions'
   ];
 
